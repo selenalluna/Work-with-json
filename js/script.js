@@ -1,4 +1,5 @@
 // "use strict";
+// import IMask from 'imask';
 
 document.querySelector("button").addEventListener("click", function() {
   let file = document.getElementById("file").files[0];
@@ -31,8 +32,24 @@ document.querySelector("button").addEventListener("click", function() {
       if (what) return (" value='" + obj.fields[0].input.colors[j] + "'")
       else return ""
     }
-    function musk(what) {
-      if (what) return ("checked")
+    function multiple(what) {
+      if (what) return (" multiple='" + obj.fields[0].input.multiple + "'")
+      else return ""
+    }
+    function options(what) {
+      let sum = "";
+      for (j=0; j<what.length; j++)
+        sum = sum + "<option>" + what[j] + "</option>";
+      return (sum);
+    }
+    function accept(what) {
+      if (what) {
+      let sum = " accept='";
+      for (j=0; j<what.length-1; j++)
+        sum = sum + 'image/' + what[j] + ',';
+      sum = sum + 'image/' + what[what.length-1];
+      return (sum);
+      }
       else return ""
     }
 
@@ -44,11 +61,27 @@ document.querySelector("button").addEventListener("click", function() {
         putId = " id='" + obj.fields[i].label + "'";
       };
 
-      if (obj.fields[i].input.colors) 
+      if (obj.fields[i].input.colors) {
+        let colorsDiv = document.createElement("div");
+        colorsDiv.className = "colors";
+        output.append(colorsDiv);
+
         for (j=0; j<Object.keys(obj.fields[i].input.colors).length; j++) {
-          output.insertAdjacentHTML("beforeend", "<input" + putId + " type='" + obj.fields[i].input.type + "'" + required(obj.fields[i].input.required) + placeholder(obj.fields[i].input.placeholder) + colored(obj.fields[0].input.colors[j]) + "></input>"); 
+          colorsDiv.insertAdjacentHTML("beforeend", "<input" + putId + " type='" + obj.fields[i].input.type + "'" + required(obj.fields[i].input.required) + placeholder(obj.fields[i].input.placeholder) + colored(obj.fields[0].input.colors[j]) + "></input>"); 
         }
-      else output.insertAdjacentHTML("beforeend", "<input" + putId + " type='" + obj.fields[i].input.type + "'" + required(obj.fields[i].input.required) + placeholder(obj.fields[i].input.placeholder) + colored(obj.fields[0].input.colors) + "></input>");
+      }
+      else if (obj.fields[i].input.type == "textarea") output.insertAdjacentHTML("beforeend", "<textarea" + putId + " type='" + obj.fields[i].input.type + "'" + required(obj.fields[i].input.required) + placeholder(obj.fields[i].input.placeholder) + "></textarea>");
+      else {if (obj.fields[i].input.type == "technology") output.insertAdjacentHTML("beforeend", "<select " + putId + multiple(obj.fields[i].input.multiple) + required(obj.fields[i].input.required) +  ">" + options(obj.fields[i].input.technologies) + "</select>");
+        else output.insertAdjacentHTML("beforeend", "<input" + putId + " type='" + obj.fields[i].input.type + "'" + accept(obj.fields[i].input.filetype) + multiple(obj.fields[i].input.multiple) + required(obj.fields[i].input.required) + placeholder(obj.fields[i].input.placeholder) + placeholder(obj.fields[i].input.mask) +"></input>");
+      // if (obj.fields[i].input.mask) {
+      //   let element = document.getElementById(obj.fields[i].label);
+      //   let maskOptions = {
+      //     mask: obj.fields[i].input.mask
+      //   };
+      //   let mask = IMask(element, maskOptions);
+      //   console.log(mask.value);
+      // }
+      }
     }
     }
 
@@ -68,7 +101,8 @@ document.querySelector("button").addEventListener("click", function() {
   }
 
     if (obj.buttons) 
-      output.insertAdjacentHTML("beforeend", "<input type='submit' value='" + obj.buttons[0].text + "'>");     
+      for (i=0; i<Object.keys(obj.buttons).length; i++)
+      output.insertAdjacentHTML("beforeend", "<input type='submit' value='" + obj.buttons[i].text + "'>");     
   }
      
   reader.onerror = function () {
