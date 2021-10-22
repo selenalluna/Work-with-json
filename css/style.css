@@ -117,3 +117,7 @@ input[type="checkbox"] {
 .colors {
     display: flex;
 }
+@media (max-width: 555px) {
+    .buildFile{
+        margin-top: 0;    
+}
