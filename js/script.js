@@ -52,6 +52,11 @@ document.querySelector("button").addEventListener("click", function() {
       }
       else return ""
     }
+    function mask(id, mask) {
+      let selector = document.getElementById(id);
+      let im = new Inputmask(mask);
+      im.mask(selector);
+    }
 
     if (obj.fields) {
     for (i=0; i<Object.keys(obj.fields).length; i++) {
@@ -72,16 +77,13 @@ document.querySelector("button").addEventListener("click", function() {
       }
       else if (obj.fields[i].input.type == "textarea") output.insertAdjacentHTML("beforeend", "<textarea" + putId + " type='" + obj.fields[i].input.type + "'" + required(obj.fields[i].input.required) + placeholder(obj.fields[i].input.placeholder) + "></textarea>");
       else {if (obj.fields[i].input.type == "technology") output.insertAdjacentHTML("beforeend", "<select " + putId + multiple(obj.fields[i].input.multiple) + required(obj.fields[i].input.required) +  ">" + options(obj.fields[i].input.technologies) + "</select>");
+        else {if (obj.fields[i].input.mask) {
+          obj.fields[i].input.type = "text";
+          output.insertAdjacentHTML("beforeend", "<input" + putId + " type='" + obj.fields[i].input.type + "'" + accept(obj.fields[i].input.filetype) + multiple(obj.fields[i].input.multiple) + required(obj.fields[i].input.required) + placeholder(obj.fields[i].input.placeholder) + placeholder(obj.fields[i].input.mask) +"></input>");
+          mask(obj.fields[i].label, obj.fields[i].input.mask);
+        }
         else output.insertAdjacentHTML("beforeend", "<input" + putId + " type='" + obj.fields[i].input.type + "'" + accept(obj.fields[i].input.filetype) + multiple(obj.fields[i].input.multiple) + required(obj.fields[i].input.required) + placeholder(obj.fields[i].input.placeholder) + placeholder(obj.fields[i].input.mask) +"></input>");
-      // if (obj.fields[i].input.mask) {
-      //   let element = document.getElementById(obj.fields[i].label);
-      //   let maskOptions = {
-      //     mask: obj.fields[i].input.mask
-      //   };
-      //   let mask = IMask(element, maskOptions);
-      //   console.log(mask.value);
-      // }
-      }
+      }}
     }
     }
 
