@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 /*Обнуление*/
 *{padding: 0;margin: 0;border: 0;}
@@ -121,4 +122,129 @@ input[type="checkbox"] {
     .buildFile {
         margin-top: 0;    
     }
+=======
+
+/*Обнуление*/
+*{padding: 0;margin: 0;border: 0;}
+*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,header,aside{display: block;}
+html,body{height:100%;width:100%;font-size:100%;line-height:1;font-size:14px;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a,a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
+/*--------------------*/
+
+body {
+    background-image: url("../img/bg.jpg");
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #000000;
+}
+._container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.buildFile{
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 2px 1px rgba(161, 94, 97, 0.2);
+    max-width: 600px;
+    padding: 20px;
+    text-align: center;
+}
+.buildFile > form {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+}
+label {
+    margin-bottom: 5px;
+}
+input, textarea, select {
+    margin-bottom: 15px;
+    border: 1px solid #c2cf90;
+    border-radius: 7px;
+    padding: 5px;
+}
+input:hover, 
+textarea:hover, 
+select:hover {
+    border: 1px solid #904f04;
+    transition: 0.4s;    
+}
+input:not(:hover), 
+textarea:not(:hover), 
+select:not(:hover) {
+    transition: 0.4s;    
+}
+textarea {
+    resize:vertical;
+}
+button,
+input[type="submit"] {
+    border: 1px solid #c2cf90;
+    border-radius: 7px;
+    padding: 7px;
+}
+button:hover,
+input[type="submit"]:hover {
+    background-color: #E2F2A9;
+    transition: 0.4s;
+}
+button:not(:hover),
+input[type="submit"]:not(:hover) {
+    transition: 0.4s;
+}
+.btnFile, input[type="file"] {
+    border: none;
+}
+.hidden {
+    display: none;
+}
+.references {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px; 
+}
+input[type="checkbox"] {
+    margin: 0;
+    margin-right: 5px;
+}
+.references p {
+    font-size: 12px;
+    margin-right: 5px;   
+}
+.references a {    
+    color: #904f04;
+    font-size: 12px;
+}
+.references a:not(:last-child) {
+    margin-right: 5px;
+}
+.references a:hover {
+    text-decoration: underline;   
+}
+.references a:active {
+    color: #6b4010;    
+}
+.colors {
+    display: flex;
+}
+@media (max-width: 555px) {
+    .buildFile {
+        margin-top: 0;    
+    }
+>>>>>>> e6db3dfc31feadb3374256a2668f909c2401d785
 }
